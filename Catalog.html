@@ -2,16 +2,64 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>目錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>巴比恩文章列表</title>
+
   <style>
     body {
       font-family: "Times New Roman", sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #e6f2ff, #e6fce6); /* 左藍右綠漸層 */
+      background: linear-gradient(to right, #e6f2ff, #e6fce6);
     }
 
+    /* === 頂部導覽列 === */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 10px 0;
+    }
+
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end; /* 導覽列移到右邊 */
+      padding: 0 30px;
+    }
+
+    .nav-links a {
+      margin-left: 15px;
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #004d80;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .nav-links a {
+        display: inline-block;
+        margin: 6px 10px;
+      }
+    }
+
+    /* === 主要內容區 === */
     .content {
       max-width: 960px;
       background: #fff;
@@ -59,16 +107,11 @@
       padding-left: 1em;
     }
 
-
     .custom-item2 {
       font-size: 20px;
       margin-left: 0.5em;
       text-indent: -1em;
       padding-left: 0em;
-    }
-
-    .sub-links a {
-      margin-right: 0.5em;
     }
 
     a {
@@ -80,24 +123,117 @@
       text-decoration: underline;
     }
 
-    /* 禁用沒有 href 的 a 的底線與游標 */
     a:not([href]):hover {
       text-decoration: none;
       cursor: default;
     }
 
-    /* 專門給非連結用的符號 */
     .symbol {
       color: inherit;
       text-decoration: none;
       cursor: default;
     }
+
+    /* === 表格 === */
+    .table-container {
+      margin-left: 0em; /* 對齊頓號後面 */
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+	.bl-table {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed; /* 固定欄位寬度，讓每欄平均 */
+	}
+
+	.bl-table td {
+	border-left: 1px solid #000;    /* 左邊框線 */
+	border-bottom: 1px solid #000;  /* 下邊框線 */
+	padding: 8px 12px;
+	text-align: left;
+	}
+
+	/* 第一列加粗上下線（日本、台灣、越南、韓國標題列） */
+	.bl-table tr:first-child td {
+	text-align: center;
+	border-top: 3px solid #000;
+	border-bottom: 3px solid #000;
+	}
+
+	/* 第7列的前三個儲存格（日本男團、台灣男團、越南空格）加粗 */
+	.bl-table tr:nth-child(7) td:first-child,
+	.bl-table tr:nth-child(7) td:nth-child(2),
+	.bl-table tr:nth-child(7) td:nth-child(3) {
+		border-bottom: 3px solid #000;
+	}
+
+	/* 第8列的最後一個儲存格（韓國男團 15~24出道）加粗 */
+	.bl-table tr:nth-child(8) td:last-child {
+		border-bottom: 3px solid #000;
+	}
+
+
+
+	/* 表格最底部加粗 */
+	.bl-table tr:last-child td {
+	border-bottom: 3px solid #000;
+	}
+
+	/* 最左列不要左邊框，最右列不要右邊框 */
+	.bl-table td:first-child {
+	border-left: none;
+	}
+
+	.bl-table td:last-child {
+	border-right: none;
+	}
+
+	/* 如果想讓上方最左與最右格不要上邊框，可加這段 */
+	.bl-table tr:first-child td:first-child,
+	.bl-table tr:first-child td:last-child {
+	border-top: 3px solid #000;  /* 保留上方加粗，如果想取消可改成 none */
+	}
+
+    /* === 響應式調整 === */
+    @media (max-width: 600px) {
+      .content {
+        padding: 25px;
+        margin: 15px;
+      }
+
+      h1.title {
+        font-size: 32px;
+      }
+
+      ol.cjk-list {
+        font-size: 24px;
+        margin-left: 2em;
+      }
+
+      ol.decimal-list {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="nav-container">
+      <nav class="nav-links">
+        <a href="https://ba29bin06h.github.io/Catalog/Data_for_BL.html">📊 各國BL數據</a>
+        <a href="https://www.dcard.tw/@ba06bin29h" target="_blank">💬 Dcard 文章列表</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 主要內容 -->
   <div class="content">
     <h1 class="title">巴比恩文章列表</h1>
 
+    <!-- 文章目錄區塊 -->
     <ol class="cjk-list">
       <li>Google 糊團系列
         <ol class="decimal-list">
@@ -112,103 +248,80 @@
         </div>
       </li>
 
-      <li>四腐全書系列
-	  <a href="#" style="color:black; text-decoration:none;">：</a>
-	  <a href = "https://ba29bin06h.github.io/Catalog/Data_for_BL.html">相關數據</a>
-        <ol class="decimal-list">
-          <li>
-            <a href="https://ba29bin06h.github.io/BL_Drama/JPBL.html">日本</a>
-			<span style="color:black;">──</span>
-			<a href="https://www.dcard.tw/f/boyslovedrama/p/259908931" target="_blank">文章</a>
-            <div class="custom-item2">
-              <span class="symbol">【</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/JPBL1_Company.html">電視台</a>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/JPBL2_Others.html">其他分類</a>
-              <span class="symbol">、</span>
-              <span class="symbol">跨國資料整理</span>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/JPBL4_Actors.html">演員資訊</a>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/JPBL5_Group.html">男團下海</a>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/JPBL6_Tokusatsu.html">特攝下海</a>
-              <span class="symbol">】</span>
-            </div>
-          </li>
+      <li>四腐全書系列：
+        <div class="table-container">
+          <table class="bl-table">
+            <tbody>
+			<tr>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/JPBL.html" >日本</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/TWBL.html" >台灣</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/VNBL.html" >越南<br>(Đông Dương)</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/KRBL.html" >韓國</a></td>
+			</tr>
+			<tr>
+				<td><a href="https://www.dcard.tw/f/boyslovedrama/p/259908931" target="_blank">大和文章</a></td>
+				<td><a href="https://www.dcard.tw/f/boyslovedrama/p/259959033" target="_blank">大員文章</a></td>
+				<td><a href="https://www.dcard.tw/f/boyslovedrama/p/260003653" target="_blank">大越文章</a></td>
+				<td><a href="https://www.dcard.tw/f/boyslovedrama/p/260108050" target="_blank">大韓文章</a></td>
+			</tr>
+			<tr>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/JPBL1_Company.html" >電視台</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/TWBL1_Company.html" >系列</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/VNBL1_Company.html" >YouTube頻道</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/KRBL1_Company.html" >工作室</a></td>
+			</tr>
+			<tr>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/JPBL2_Others.html" >其他分類(日)</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/TWBL2_IOT.html" >IOT模擬</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/VNBL2_AccentABO.html" >口音ABO</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/KRBL2_Others.html" >其他分類(韓)</a></td>
+			</tr>
+			<tr>
+				<td><span class="symbol">跨國整理</span></td>
+				<td><span class="symbol">跨國整理</span></td>
+				<td><span class="symbol">跨國整理</span></td>
+				<td><span class="symbol">跨國整理</span></td>
+			</tr>			
+			<tr>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/JPBL4_Actors.html" >演員</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/TWBL4_Actors.html" >演員</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/VNBL4_Actors.html" >演員<br>(北越SNS)</a></td>
+				<td><a href="https://www.dcard.tw/f/boyslovedrama/p/260108050/b/1-4" target="_blank">演員</a></td>
+			</tr>
+			<tr>
+				<td rowspan="2"><a href="https://ba29bin06h.github.io/BL_Drama/JPBL5_Group.html">日本男團</a></td>
+				<td rowspan="2"><a href="https://www.dcard.tw/f/tvepisode/p/259107016" target="_blank">台灣男團</a></td>
+				<td rowspan="2"></td>
+				<td style="border-left: 1px solid #000;"><a href="https://ba29bin06h.github.io/BL_Drama/KRBL5_Group1.html">韓國男團<br>(05~14出道)</a></td>
+			</tr>
+			<tr>
+				<td style="border-left: 1px solid #000;"><a href="https://ba29bin06h.github.io/BL_Drama/KRBL5_Group2.html">韓國男團<br>(15~24出道)</a></td>
+			</tr>
+			<tr>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/JPBL6_Tokusatsu.html">特攝</a></td>
+				<td></td>
+				<td><a href="https://www.dcard.tw/f/boyslovedrama/p/260003653/b/2" target="_blank">越腐小短片+心得</a></td>
+				<td><a href="https://ba29bin06h.github.io/BL_Drama/KRBL6_CityboyLog.html">CityboyLog</a></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><a href="https://www.dcard.tw/f/tvepisode/p/257989661" target="_blank">柬埔寨BL劇</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><a href="https://www.dcard.tw/f/boyslovedrama/p/257894089/b/2" target="_blank">寮國BL劇</a></td>
+				<td></td>
+			</tr>
+            </tbody>
+          </table>
+        </div>
 
-          <li>
-            <a href="https://ba29bin06h.github.io/BL_Drama/TWBL.html">台灣</a>
-			<span style="color:black;">──</span>
-			<a href="https://www.dcard.tw/f/boyslovedrama/p/259959033" target="_blank">文章</a>
-            <div class="custom-item2">
-              <span class="symbol">【</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/TWBL1_Company.html">工作室</a>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/TWBL2_IOT.html">IOT模擬</a>
-              <span class="symbol">、</span>
-              <span class="symbol">跨國資料整理</span>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/TWBL4_Actors.html">演員資訊</a>
-              <span class="symbol">、</span>
-              <a href="https://www.dcard.tw/f/tvepisode/p/259107016" target="_blank">男團下海</a>
-              <span class="symbol">】</span>
-            </div>
-          </li>
-
-          <li>
-            <a href="https://ba29bin06h.github.io/BL_Drama/VNBL.html">越南 (Liên bang Đông Dương)</a>
-			<span style="color:black;">──</span>
-			<a href="https://www.dcard.tw/f/boyslovedrama/p/260003653" target="_blank">文章</a>
-            <div class="custom-item2">
-              <span class="symbol">【</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/VNBL1_Company.html">工作室</a>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/VNBL2_AccentABO.html">口音ABO</a>
-              <span class="symbol">、</span>
-              <span class="symbol">跨國資料整理</span>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/VNBL4_Actors.html">演員資訊</a>
-              <span class="symbol">】</span>
-            </div>
-            <div class="custom-item2">
-              <span class="symbol">【</span>
-              <a href="https://www.dcard.tw/f/boyslovedrama/p/260003653/b/2" target="_blank">越腐小短片+心得</a>
-              <span class="symbol">、</span>
-              <a href="https://www.dcard.tw/f/tvepisode/p/257989661" target="_blank">柬埔寨BL劇</a>
-              <span class="symbol">、</span>
-              <a href="https://www.dcard.tw/f/boyslovedrama/p/257894089/b/2" target="_blank">寮國BL劇</a>
-              <span class="symbol">】</span>
-            </div>
-          </li>
-		  
-		  <li>
-			<a href="https://ba29bin06h.github.io/BL_Drama/KRBL.html">韓國</a>
-			<span style="color:black;">──</span>
-			<a href="https://www.dcard.tw/f/boyslovedrama/p/260108050" target="_blank">文章</a>
-            <div class="custom-item2">
-              <span class="symbol">【</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/KRBL1_Company.html">工作室</a>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/KRBL2_Others.html">其他分類</a>
-              <span class="symbol">、</span>
-              <span class="symbol">跨國資料整理</span>
-              <span class="symbol">、</span>
-              <a href= "https://www.dcard.tw/f/boyslovedrama/p/260108050/b/1-4" target="_blank">演員資訊</a>
-              <span class="symbol">、</span> <br>
-              <a href="https://ba29bin06h.github.io/BL_Drama/KRBL5_Group1.html">男團下海(2005~2014年出道)</a>
-              <span class="symbol">、</span>
-			  <a href="https://ba29bin06h.github.io/BL_Drama/KRBL5_Group2.html">男團下海(2015~2024年出道)</a>
-              <span class="symbol">、</span>
-              <a href="https://ba29bin06h.github.io/BL_Drama/KRBL6_CityboyLog.html">CityboyLog</a>
-              <span class="symbol">】</span>
-            </div>	
-		  </li>
-		  
-		  
-        </ol>
       </li>
     </ol>
   </div>
+
 </body>
 </html>
