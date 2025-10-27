@@ -135,86 +135,126 @@
     }
 
     /* === 表格 === */
-    .table-container {
-      margin-left: 0em; /* 對齊頓號後面 */
-      overflow-x: auto;
-      margin-top: 10px;
+  .table-container {
+    margin-left: 0em;
+    overflow-x: auto;
+    margin-top: 15px;
+  }
+
+  .bl-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+  }
+
+  /* 第一列（國家標題） */
+  .bl-table tr:first-child td {
+    background: linear-gradient(to right, #dbeafe, #dcfce7);
+    font-weight: 700;
+    font-size: 26px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #003366;
+    border-bottom: 3px solid #000;
+    border-top: 3px solid #000;
+    padding: 14px 10px;
+    text-shadow: 0 1px 0 #fff;
+  }
+
+  /* 其他列（連結內容） */
+  .bl-table td {
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 18px;
+    color: #333;
+    transition: background-color 0.25s, color 0.25s;
+    word-wrap: break-word;
+    background-color: #fff;
+  }
+
+  /* 滑過整列效果 */
+  .bl-table tr:hover td {
+    background-color: #f8fbff;
+  }
+
+  /* 加粗分隔線（保留原有邏輯） */
+  .bl-table tr:nth-child(7) td:first-child,
+  .bl-table tr:nth-child(7) td:nth-child(2),
+  .bl-table tr:nth-child(7) td:nth-child(3) {
+    border-bottom: 3px solid #000;
+  }
+
+  .bl-table tr:nth-child(8) td:last-child {
+    border-bottom: 3px solid #000;
+  }
+
+  .bl-table tr:last-child td {
+    border-bottom: 3px solid #000;
+  }
+
+  /* 移除韓國男團兩格的左邊框線 */
+  .bl-table tr:nth-child(7) td:last-child,
+  .bl-table tr:nth-child(8) td:last-child {
+    border-left: none !important;
+  }
+
+  /* 超連結樣式微調（更柔和的互動感） */
+  .bl-table a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  .bl-table a:hover {
+    color: #004d80;
+    text-shadow: 0 0 3px rgba(0, 102, 204, 0.3);
+    text-decoration: underline;
+  }
+
+  /* 響應式設計（手機版） */
+  @media (max-width: 768px) {
+    .bl-table tr:first-child td {
+      font-size: 20px;
+      padding: 10px;
     }
 
-	.bl-table {
-	border-collapse: collapse;
-	width: 100%;
-	table-layout: fixed; /* 固定欄位寬度，讓每欄平均 */
-	}
-
-	.bl-table td {
-	border-left: 1px solid #000;    /* 左邊框線 */
-	border-bottom: 1px solid #000;  /* 下邊框線 */
-	padding: 8px 12px;
-	text-align: left;
-	}
-
-	/* 第一列加粗上下線（日本、台灣、越南、韓國標題列） */
-	.bl-table tr:first-child td {
-	text-align: center;
-	border-top: 3px solid #000;
-	border-bottom: 3px solid #000;
-	}
-
-	/* 第7列的前三個儲存格（日本男團、台灣男團、越南空格）加粗 */
-	.bl-table tr:nth-child(7) td:first-child,
-	.bl-table tr:nth-child(7) td:nth-child(2),
-	.bl-table tr:nth-child(7) td:nth-child(3) {
-		border-bottom: 3px solid #000;
-	}
-
-	/* 第8列的最後一個儲存格（韓國男團 15~24出道）加粗 */
-	.bl-table tr:nth-child(8) td:last-child {
-		border-bottom: 3px solid #000;
-	}
-
-
-
-	/* 表格最底部加粗 */
-	.bl-table tr:last-child td {
-	border-bottom: 3px solid #000;
-	}
-
-	/* 最左列不要左邊框，最右列不要右邊框 */
-	.bl-table td:first-child {
-	border-left: none;
-	}
-
-	.bl-table td:last-child {
-	border-right: none;
-	}
-
-	/* 如果想讓上方最左與最右格不要上邊框，可加這段 */
-	.bl-table tr:first-child td:first-child,
-	.bl-table tr:first-child td:last-child {
-	border-top: 3px solid #000;  /* 保留上方加粗，如果想取消可改成 none */
-	}
-
-    /* === 響應式調整 === */
-    @media (max-width: 600px) {
-      .content {
-        padding: 25px;
-        margin: 15px;
-      }
-
-      h1.title {
-        font-size: 32px;
-      }
-
-      ol.cjk-list {
-        font-size: 24px;
-        margin-left: 2em;
-      }
-
-      ol.decimal-list {
-        font-size: 20px;
-      }
+    .bl-table td {
+      font-size: 15px;
+      padding: 8px;
     }
+  }
+
+  @media (max-width: 480px) {
+    .bl-table td {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .bl-table tr {
+      display: block;
+      margin-bottom: 10px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .bl-table tr:first-child {
+      display: none; /* 手機版隱藏表頭 */
+    }
+  }
+
+
   </style>
 </head>
 
